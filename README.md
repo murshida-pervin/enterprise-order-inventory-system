@@ -1,8 +1,11 @@
-# Enterprise Order & Inventory Backend System
+# AI-Enabled Enterprise Inventory Analytics System
 
-A backend system simulation for managing enterprise inventory and order workflows using Python, SQL Server, and Object-Oriented Programming (OOP).
+Problem
+Businesses need efficient inventory management and sales insights.
 
-This project demonstrates backend business logic, relational database design, SQL integration, and enterprise-style architecture commonly used in real-world systems.
+Solution
+Built a Python and SQL Server application that manages inventory, processes orders,
+analyzes sales data, and predicts future demand.
 
 ---
 
@@ -33,6 +36,9 @@ The application connects Python with Microsoft SQL Server and performs backend o
 - pyodbc
 - Git & GitHub
 - Object-Oriented Programming (OOP)
+- Pandas
+- Matplotlib
+- Scikit-Learn
 
 ---
 
@@ -50,6 +56,9 @@ enterprise-order-inventory-system/
 │   ├── db.py
 │   ├── models.py
 │   ├── services.py
+│   ├── analytics.py
+│   ├── visaulize.py
+│   ├── forecasting.py
 │
 ├── docs/
 │   ├── architecture.md
