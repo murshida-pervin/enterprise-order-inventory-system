@@ -107,24 +107,23 @@ matplotlib (Charts)
 enterprise-order-inventory-system/
 │
 ├── sql/
-│   ├── schema.sql
-│   ├── procedures.sql
+│ ├── schema.sql
+│ └── procedures.sql
 │
 ├── python/
-│   ├── main.py
-│   ├── dp.py
-│   ├── services.py
-│   ├── analytics.py
-│   ├── forecasting.py
-│   ├── visualization.py
+│ ├── main.py
+│ ├── dp.py
+│ ├── services.py
+│ ├── analytics.py
+│ ├── forecasting.py
+│ └── visualization.py
 │
 ├── docs/
-│   ├── architecture.md
+│ └── architecture.md
 │
 ├── README.md
 ├── requirements.txt
 └── .gitignore
-
 ---
 
 ## ⚙️ System Flow
