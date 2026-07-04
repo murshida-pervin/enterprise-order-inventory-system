@@ -14,7 +14,7 @@ class InventoryService:
         return rows
 
     # CREATE ORDER (IMPORTANT)
-    def create_order(self, customer_name, product_id, quantity):
+    def create_order(self, customer_name, product_id, quantity,order_date):
         conn = get_connection()
         cursor = conn.cursor()
 
@@ -27,7 +27,7 @@ class InventoryService:
             return
 
         # 2. Insert order
-        cursor.execute("INSERT INTO Orders (CustomerName) VALUES (?)", customer_name)
+        cursor.execute("INSERT INTO Orders (CustomerName, OrderDate, OrderType) VALUES (?,?,?)", customer_name, order_date, "Customer")
         conn.commit()
 
         # 3. Get last order id
