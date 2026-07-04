@@ -104,27 +104,24 @@ matplotlib (Charts)
 
 ## 📂 Project Structure
 
-enterprise-order-inventory-system/
-│
-├── sql/
-│ ├── schema.sql
-│ └── procedures.sql
-│
-├── python/
-│ ├── main.py
-│ ├── dp.py
-│ ├── services.py
-│ ├── analytics.py
-│ ├── forecasting.py
-│ └── visualization.py
-│
-├── docs/
-│ └── architecture.md
-│
-├── README.md
-├── requirements.txt
-└── .gitignore
----
+- **sql/**
+  - schema.sql
+  - procedures.sql
+
+- **python/**
+  - main.py → CLI dashboard
+  - dp.py → database connection
+  - services.py → business logic
+  - analytics.py → sales reports
+  - forecasting.py → ML predictions
+  - visualization.py → charts
+
+- **docs/**
+  - architecture.md
+
+- README.md
+- requirements.txt
+- .gitignore
 
 ## ⚙️ System Flow
 
