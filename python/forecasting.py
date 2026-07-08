@@ -1,6 +1,7 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
-from db import get_connection   # or database.py if renamed
+from db import get_connection
 
 
 class Forecasting:
@@ -27,31 +28,79 @@ class Forecasting:
         conn.close()
 
         if df.empty:
-            print("No sales data available")
+            print("No sales data available.")
             return
 
-        print("\n=========== SALES FORECAST ===========\n")
+        print("\n========== SALES FORECAST ==========\n")
 
-        # loop each product
+        # Forecast each product separately
         for product in df["ProductName"].unique():
 
             product_data = df[df["ProductName"] == product].copy()
 
-            # need at least 2 months
             if len(product_data) < 2:
                 continue
 
             product_data = product_data.reset_index(drop=True)
 
+            # X = Month Number
             X = list(range(1, len(product_data) + 1))
             y = product_data["TotalSold"]
 
             model = LinearRegression()
             model.fit(pd.DataFrame(X), y)
 
-            current_month = int(y.iloc[-1])
-            next_month = int(model.predict([[len(product_data) + 1]])[0])
+            # Predict next month
+            next_month = len(product_data) + 1
+            prediction = model.predict([[next_month]])[0]
 
-            print(product)
-            print(f"Current Month : {current_month}")
-            print(f"Next Month    : {next_month}\n")
+            print(f"Product       : {product}")
+            print(f"Current Sales : {int(y.iloc[-1])}")
+            print(f"Predicted Next Month : {int(prediction)}\n")
+
+            # -----------------------------
+            # Visualization
+            # -----------------------------
+
+            plt.figure(figsize=(8,5))
+
+            # Historical Sales
+            plt.plot(
+                X,
+                y,
+                marker='o',
+                linewidth=3,
+                label="Historical Sales"
+            )
+
+            # Regression Line
+            future_x = X + [next_month]
+            future_y = list(model.predict(pd.DataFrame(future_x)))
+
+            plt.plot(
+                future_x,
+                future_y,
+                linestyle='--',
+                marker='o',
+                linewidth=2,
+                label="Linear Regression"
+            )
+
+            # Highlight Prediction
+            plt.scatter(
+                next_month,
+                prediction,
+                s=120,
+                color='red',
+                label="Forecast"
+            )
+
+            plt.title(f"{product} Sales Forecast")
+            plt.xlabel("Month")
+            plt.ylabel("Units Sold")
+            plt.xticks(future_x)
+            plt.grid(True, linestyle="--", alpha=0.4)
+            plt.legend()
+
+            plt.tight_layout()
+            plt.show()
